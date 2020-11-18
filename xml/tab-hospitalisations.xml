@@ -1,0 +1,121 @@
+<listeHospitalisations>
+    <etablissement>
+        <codeEtab>1234</codeEtab>
+        <dossier>5</dossier>
+        <dateAdmission>14 août 2000</dateAdmission>
+        <dateSortie>14 août 2001</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>1234</codeEtab>
+        <dossier>10</dossier>
+        <dateAdmission>12 décembre 1992</dateAdmission>
+        <dateSortie>12 décembre 1992</dateSortie>
+        <specialite>Chirurgie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>2346</codeEtab>
+        <dossier>8</dossier>
+        <dateAdmission>03 mars 2003</dateAdmission>
+        <dateSortie>05 mars 2003</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>2346</codeEtab>
+        <dossier>1</dossier>
+        <dateAdmission>11 novembre 1997</dateAdmission>
+        <dateSortie>12 novembre 1997</dateSortie>
+        <specialite>Orthopédie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>2346</codeEtab>
+        <dossier>3</dossier>
+        <dateAdmission>12 avril 1995</dateAdmission>
+        <dateSortie>30 avril 1995</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>3980</codeEtab>
+        <dossier>5</dossier>
+        <dateAdmission>14 février 2000</dateAdmission>
+        <dateSortie>14 mars 2000</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>3980</codeEtab>
+        <dossier>5</dossier>
+        <dateAdmission>01 janvier 2001</dateAdmission>
+        <dateSortie>01 février 2001</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>3980</codeEtab>
+        <dossier>9</dossier>
+        <dateAdmission>03 avril 1995</dateAdmission>
+        <dateSortie>08 avril 1995</dateSortie>
+        <specialite>Orthopédie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>3980</codeEtab>
+        <dossier>7</dossier>
+        <dateAdmission>27 novembre 1999</dateAdmission>
+        <dateSortie>04 décembre 1999</dateSortie>
+        <specialite>Chirurgie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>3980</codeEtab>
+        <dossier>10</dossier>
+        <dateAdmission>28 avril 1997</dateAdmission>
+        <dateSortie>05 mai 1997</dateSortie>
+        <specialite>Chirurgie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>4177</codeEtab>
+        <dossier>3</dossier>
+        <dateAdmission>03 août 2001</dateAdmission>
+        <dateSortie>05 décembre 2001</dateSortie>
+        <specialite>Médecine</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>4177</codeEtab>
+        <dossier>3</dossier>
+        <dateAdmission>02 février 2002</dateAdmission>
+        <dateSortie>23 février 2002</dateSortie>
+        <specialite>Orthopédie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>7306</codeEtab>
+        <dossier>2</dossier>
+        <dateAdmission>23 mai 1998</dateAdmission>
+        <dateSortie>27 mai 1998</dateSortie>
+        <specialite>Orthopédie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>8895</codeEtab>
+        <dossier>10</dossier>
+        <dateAdmission>23 août 1998</dateAdmission>
+        <dateSortie>27 août 1998</dateSortie>
+        <specialite>Chirurgie</specialite>
+    </etablissement>
+
+    <etablissement>
+        <codeEtab>7306</codeEtab>
+        <dossier>2</dossier>
+        <dateAdmission>23 février 1998</dateAdmission>
+        <dateSortie>27 fév. 1998</dateSortie>
+        <specialite>Orthopédie</specialite>
+    </etablissement>
+</listeHospitalisations>
