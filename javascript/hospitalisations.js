@@ -1,4 +1,6 @@
 // Tableau d'objets pour les patients  
+/* ENLEVER
+
 var tabPatients = [
     {"Dossier":1,"Nom":"Léger","Prénom":"Émile","Naissance":"26 mars 1917","Sexe":"M"},
     {"Dossier":2,"Nom":"Bernard","Prénom":"Marie","Naissance":"3 février 1946","Sexe":"F"},
@@ -43,6 +45,7 @@ var tabHospitalisations = [
     {"codeEtab":7306,"Dossier":2,"dateAdmission":"23 février 1998","dateSortie":"27 fév. 1998","spécialité":"Orthopédie"}
     
 ]
+*/
 /* variables globales */
 var divEntete, tailleTableau, codeEtablissement, nomEtablissement, posEtabChoisi, specParEtab;
 var enteteTabPatient = '<table class="w3-table-all centrer-tableau mb-md shadow"><tr class="table-header-border"><th>No. dossier</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>Sexe</th></tr>';
@@ -57,10 +60,30 @@ var fermerTableau = "</table>"
 
 var d = new Date();
 var n = d.getFullYear();
+var xmlPatients = null;
+var xmlEtab = null;
+var xmlHosp = null;
 
 /* ---------- Lister les patients ---------- */
 function listerPatients(){
-    let prop, patient, tableauPatient;
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-patients.xml",
+        dataType : "xml",
+        success : function(validPatients) { // On valide si ça fonctionne 
+            xmlPatients = validPatients;
+            afficherPatients();
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur");
+        }
+    });
+}
+
+function afficherPatients(){
+    let tabPatients = xmlPatients.getElementsByTagName('patient');
+    tailleTableau = tabPatients.length;
+    let tableauPatient = enteteTabPatient; // on peut prendre grid ou div
     effacer();// vider le tableau
     
     //Entête du tableau
@@ -68,19 +91,20 @@ function listerPatients(){
     afficherEntete(divEntete); // affiher la nouvelle entête
 
     //remplir le tableau
-    tableauPatient = enteteTabPatient;
-    for (patient of tabPatients) {//pour chaque objet du tableau
-        tableauPatient += ouvrirRangee; // ajouter une rangée
-        for (prop in patient) { // pour chaque prop dans patient
-            tableauPatient += ouvrirCellule + patient[prop] + fermerCellule; //ajouter une cellule au tableau
-        };
-        tableauPatient += fermerRangee; // fermer la rangée
+    for (var i=0; i<tailleTableau;i++){
+        var lePatient = tabPatients[i];
+        var dossier = lePatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        var nom = lePatient.getElementsByTagName('nom')[0].firstChild.nodeValue;
+        var prenom = lePatient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+        var naissance = lePatient.getElementsByTagName('naissance')[0].firstChild.nodeValue;
+        var sexe = lePatient.getElementsByTagName('sexe')[0].firstChild.nodeValue;
+        tableauPatient += ouvrirRangee + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + nom + fermerCellule + ouvrirCellule + prenom + fermerCellule + ouvrirCellule + naissance + fermerCellule + ouvrirCellule + sexe + fermerCellule + fermerRangee;
     }
-    tableauPatient += fermerTableau; // fermer le tableau
-    document.getElementById("afficheTableau").innerHTML = tableauPatient; //afficher le tableau
 
+    tableauPatient += fermerTableau;
+    document.getElementById("afficheTableau").innerHTML = tableauPatient; //afficher le tableau en javascript
+    
     // afficher messages
-    tailleTableau = tabPatients.length;
     document.getElementById("champStatus").innerHTML = "Il y a <span class='vert'>" + tailleTableau + " patients</span> enregistrés dans la base de donnée.";
 }
 

@@ -218,7 +218,7 @@ nav{
 
 /* ------------ Contenu ------------ */
 section{
-    padding:3rem 3rem 9rem 3rem
+    padding:3rem 3rem 9rem 3rem;
 }
 .entete{
     display:flex;
@@ -240,7 +240,7 @@ section{
 .w3-table-all th {background-color: #fafbfe; color:#0a9381; }
 .w3-table-all tr:nth-child(odd) {background-color: #fafbfe;}
 .w3-table-all tr:nth-child(even) {background-color: white;}
-.w3-table-all tr:hover {background-color: #0a9381; color:#ffd900;}
+.w3-table-all tr:hover {background-color: #0a9381; color:#ffd900; transition: 0.4s;}
 .table-header-border{border-bottom:1px solid #003c3a !important;}
 
 
