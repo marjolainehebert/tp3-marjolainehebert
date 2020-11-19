@@ -1,38 +1,3 @@
-// Tableau d'objets pour les patients  
-/* ENLEVER
-
-// Tableau d'objets pour les établissements
-var tabEtablissements = [
-    {"codeEtab":1230,"nomEtab":"Centre hospitalier Sud","adresseEtab":"1234, Boul. Sud, Montréal, Qc","postalEtab":"H2M 2Y6","telEtab":"(514) 123-1234"},
-    {"codeEtab":1234,"nomEtab":"Centre hospitalier de St. Mary","adresseEtab":"3830, avenue Lacombe Montréal, Qc","postalEtab":"H3T 1M5","telEtab":"(514) 345-3511"},
-    {"codeEtab":2346,"nomEtab":"Hôpital Saint-Luc du CHUM","adresseEtab":"1058, rue Saint-Denis, Montréal, Qc","postalEtab":"H2X 3J4","telEtab":"(514) 890-8000"},
-    {"codeEtab":3980,"nomEtab":"Hôpital Santa Cabrini","adresseEtab":"5655, rue Saint-Zotique Est Montréal,Qc","postalEtab":"H1T 1P7","telEtab":"(514) 252-6000"},
-    {"codeEtab":4177,"nomEtab":"Hôpital Jean-Talon","adresseEtab":"1385, rue Jean-Talon Est Montréal, Qc","postalEtab":"H2E 1S6","telEtab":"(514) 495-6767"},
-    {"codeEtab":7306,"nomEtab":"Hôpital Fleury","adresseEtab":"2180, rue Fleury Est Montréal, Qc","postalEtab":"H2B 1K3","telEtab":"(514) 384-2000"},
-    {"codeEtab":8895,"nomEtab":"Hôpital Rivière-des-Prairies","adresseEtab":"7070, boulevard Perras Montréal, Qc","postalEtab":"H1E 1A4","telEtab":"(514) 323-7260"},
-    {"codeEtab":3655,"nomEtab":"Hôpital St-Hubert","adresseEtab":"7070, boulevard Perras Montréal, Qc","postalEtab":"H1E 1A4","telEtab":"(514) 323-7260"},
-]
-
-// Tableau d'objets pour hospitalisations
-var tabHospitalisations = [
-    {"codeEtab":1234,"Dossier":5,"dateAdmission":"14 août 2000","dateSortie":"14 août 2001","spécialité":"Médecine"},
-    {"codeEtab":1234,"Dossier":10,"dateAdmission":"12 décembre 1992","dateSortie":"12 décembre 1992","spécialité":"Chirurgie"},
-    {"codeEtab":2346,"Dossier":8,"dateAdmission":"03 mars 2003","dateSortie":"05 mars 2003","spécialité":"Médecine"},
-    {"codeEtab":2346,"Dossier":1,"dateAdmission":"11 novembre 1997","dateSortie":"12 novembre 1997","spécialité":"Orthopédie"},
-    {"codeEtab":2346,"Dossier":3,"dateAdmission":"12 avril 1995","dateSortie":"30 avril 1995","spécialité":"Médecine"},
-    {"codeEtab":3980,"Dossier":5,"dateAdmission":"14 février 2000","dateSortie":"14 mars 2000","spécialité":"Médecine"},
-    {"codeEtab":3980,"Dossier":5,"dateAdmission":"01 janvier 2001","dateSortie":"01 février 2001","spécialité":"Médecine"},
-    {"codeEtab":3980,"Dossier":9,"dateAdmission":"03 avril 1995","dateSortie":"08 avril 1995","spécialité":"Orthopédie"},
-    {"codeEtab":3980,"Dossier":7,"dateAdmission":"27 novembre 1999","dateSortie":"04 décembre 1999","spécialité":"Chirurgie"},
-    {"codeEtab":3980,"Dossier":10,"dateAdmission":"28 avril 1997","dateSortie":"05 mai 1997","spécialité":"Chirurgie"},
-    {"codeEtab":4177,"Dossier":3,"dateAdmission":"03 août 2001","dateSortie":"05 décembre 2001","spécialité":"Médecine"},
-    {"codeEtab":4177,"Dossier":3,"dateAdmission":"02 février 2002","dateSortie":"23 février 2002","spécialité":"Orthopédie"},
-    {"codeEtab":7306,"Dossier":2,"dateAdmission":"23 mai 1998","dateSortie":"27 mai 1998","spécialité":"Orthopédie"},
-    {"codeEtab":8895,"Dossier":10,"dateAdmission":"23 août 1998","dateSortie":"27 août 1998","spécialité":"Chirurgie"},
-    {"codeEtab":7306,"Dossier":2,"dateAdmission":"23 février 1998","dateSortie":"27 fév. 1998","spécialité":"Orthopédie"}
-    
-]
-*/
 /* variables globales */
 var divEntete, tailleTableau, codeEtablissement, nomEtablissement, posEtabChoisi, specParEtab;
 var enteteTabPatient = '<table class="w3-table-all centrer-tableau mb-md shadow"><tr class="table-header-border"><th>No. dossier</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>Sexe</th></tr>';
@@ -62,7 +27,7 @@ function listerPatients(){
             afficherPatients();
         },
         fail : function() { //si ça ne fonctionne pas
-            alert("Il y a une erreur côté serveur");
+            alert("Il y a une erreur côté serveur avec le fichier tab-patients.xml");
         }
     });
 }
@@ -109,7 +74,7 @@ function listerEtablissements(){
             afficherEtablissements();
         },
         fail : function() { //si ça ne fonctionne pas
-            alert("Il y a une erreur côté serveur");
+            alert("Il y a une erreur côté serveur avec le fichier tab-etablissements.xml");
         }
     });
 }
@@ -140,7 +105,6 @@ function afficherEtablissements(){
     document.getElementById("afficheTableau").innerHTML = tableauEtablissement; //afficher le tableau
 
     // afficher message
-    
     document.getElementById("champStatus").innerHTML =  "Il y a <span class='vert'>" + tailleTableau + " établissements</span> dans le réseau hospitalier.";
 }
 
@@ -158,7 +122,7 @@ function listerHospitalisations(){
             afficherHospitalisations();
         },
         fail : function() { //si ça ne fonctionne pas
-            alert("Il y a une erreur côté serveur");
+            alert("Il y a une erreur côté serveur avec le fichier tab-hospitalisations.xml");
         }
     });
 }
@@ -195,9 +159,39 @@ function afficherHospitalisations(){
 
 
 /* ---------- Lister les hospitalisations par patient  ---------- */
-/* remplir le sélecteur patient */
 function selHosParPatients(){
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-patients.xml",
+        dataType : "xml",
+        success : function(validPatients) { // On valide si ça fonctionne 
+            xmlPatients = validPatients;
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur avec le fichier tab-patients.xml");
+        }
+    });
+
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-hospitalisations.xml",
+        dataType : "xml",
+        success : function(validHosp) { // On valide si ça fonctionne 
+            xmlHosp = validHosp;
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur avec le fichier tab-hospitalisations.xml");
+        }
+    });
+    remplirSelHosParPatients();
+    
+}
+
+/* remplir le sélecteur patient */
+function remplirSelHosParPatients(){
     let selPatient=document.querySelector('#selectPatient');
+    let tabPatients = xmlPatients.getElementsByTagName('patient');
+    tailleTableau = tabPatients.length;
     let patient;
     effacer();// vider le tableau
     
@@ -212,13 +206,18 @@ function selHosParPatients(){
     document.getElementById("champStatus").innerHTML = "Choisir le <span class='vert'>Code Patient</span> pour afficher toutes ses hospitalisations";
     selPatient.options[selPatient.options.length]=new Option("Choisir un patient");
 	for (patient of tabPatients) {
-        selPatient.options[selPatient.options.length]=new Option(patient.Dossier + " - " + patient.Prénom + " " + patient.Nom);
+        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;
+        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+        selPatient.options[selPatient.options.length]=new Option(dossier + " - " + prenom + " " + nom);
 	}
 }
 
 /* Afficher les attributs du patient sélectionné dans des tableaux */
 function afficherInfosDuPatient(patientSelect) {
     let posPatientChoisi = patientSelect.selectedIndex-1;
+    let tabPatients = xmlPatients.getElementsByTagName('patient');
+    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement');
     let patientChoisi = tabPatients[posPatientChoisi];
     let nominParGenre = "";
     let compteurHospitalisations = 0 ;
@@ -229,44 +228,47 @@ function afficherInfosDuPatient(patientSelect) {
     
     // afficher les données du patient
     tableauParPatient = enteteTabPatient;
-    tableauParPatient += ouvrirRangee; // ajouter une rangée
-    for (prop in patientChoisi) { // pour chaque prop dans patient
-        tableauParPatient += ouvrirCellule + patientChoisi[prop] + fermerCellule; //ajouter une cellule au tableau
-    }
-    tableauParPatient += fermerRangee + fermerTableau; // fermer la rangée et le tableau
+    let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+    let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
+    let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+    let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
+    let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
+    tableauParPatient += ouvrirRangee + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + nom + fermerCellule + ouvrirCellule + prenom + fermerCellule + ouvrirCellule + naissance + fermerCellule + ouvrirCellule + sexe + fermerCellule + fermerRangee;
+    tableauParPatient += fermerTableau; // fermer la rangée et le tableau
 
     // afficher les données d'hospitalisation du patient
-    dossierPatient = patientChoisi.Dossier;
+    dossierPatient = dossier;
     tableauHospParPatient = enteteTabHospitalisations;
     tableauHospParPatient += ouvrirRangee; // ajouter une rangée
     for (hospPatient of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
-        if (hospPatient.Dossier == dossierPatient){
+        let codeEtab = hospPatient.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+        let dossierHosp = hospPatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        let dateAdmission = hospPatient.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue;
+        let dateSortie = hospPatient.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
+        let specialite = hospPatient.getElementsByTagName('specialite')[0].firstChild.nodeValue;
+        if (dossierHosp == dossierPatient){
             compteurHospitalisations++;
-            for (prop in hospPatient) { // pour chaque prop dans les hospitalisations
-                tableauHospParPatient += ouvrirCellule + hospPatient[prop] + fermerCellule; // ajouter une cellule au tableau
-                if (hospPatient[prop] == hospPatient.spécialité){
-                    if (!listeSpecialite.includes(hospPatient.spécialité)){
-                        compteurSpecialite++
-                        if (compteurSpecialite > 1){ //si il y en a plus que un, ajouter une virgule entre
-                            listeSpecialite += ", "
-                        }
-                        listeSpecialite += hospPatient.spécialité;
-                    }
+            tableauHospParPatient += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
+            if (!listeSpecialite.includes(specialite)){
+                compteurSpecialite++
+                if (compteurSpecialite > 1){ //si il y en a plus que un, ajouter une virgule entre
+                    listeSpecialite += ", "
                 }
+                listeSpecialite += specialite;
             }
         }
         tableauHospParPatient += fermerRangee; // fermer la rangée
     }
-    tableauHospParPatient += fermerTableau; // fermer le tableau
+    tableauHospParPatient += fermerTableau; // fermer le tableau*/
 
     // déterminer de quel Sexe est le patient pour le nommer correctement
-    if (patientChoisi.Sexe == "F"){
+    if (sexe == "F"){
         nominParGenre = "La patiente";
     } else {
         nominParGenre = "Le patient";
     }
     // Déterminer l'âge du patient
-    anneeNaissance = patientChoisi.Naissance; // aller chercher la chaîne de caractère de la date de naissance
+    anneeNaissance = naissance; // aller chercher la chaîne de caractère de la date de naissance
     anneeNaissance = anneeNaissance.replace(/.(?=.{4})/g, ''); // garder seulement les 4 derniers caractères pour obtenir l'année de naissance
     agePatient = n - parseInt(anneeNaissance); // calculer l'âge du patient
     if (agePatient >= 70){  // si le patient a plus de 70 ans ajouter un message d'alerte
@@ -276,10 +278,10 @@ function afficherInfosDuPatient(patientSelect) {
     // afficher message et le tableau
     if (compteurHospitalisations == 0){ // si il n'y a eu aucune hospitalisation
         document.getElementById("afficheTableau").innerHTML = tableauParPatient; // afficher le tableau dans l'espace prévu
-        document.getElementById("champStatus").innerHTML = "<span class='rouge'>" + nominParGenre + " " + patientChoisi.Prénom + " " + patientChoisi.Nom + " n'a pas encore été hospitalisé.</span>" + categoriePatient;
+        document.getElementById("champStatus").innerHTML = "<span class='rouge'>" + nominParGenre + " " + prenom + " " + nom + " n'a pas encore été hospitalisé.</span>" + categoriePatient;
     } else {
         document.getElementById("afficheTableau").innerHTML = tableauParPatient + tableauHospParPatient; // afficher le tableau dans l'espace prévu
-        document.getElementById("champStatus").innerHTML = nominParGenre + " <span class='vert'>" + patientChoisi.Prénom + " " + patientChoisi.Nom + "</span> a été hospitalisé <span class='vert'>" + compteurHospitalisations + " fois</span> (" + listeSpecialite + ")." + categoriePatient;
+        document.getElementById("champStatus").innerHTML = nominParGenre + " <span class='vert'>" + prenom + " " + nom + "</span> a été hospitalisé <span class='vert'>" + compteurHospitalisations + " fois</span> (" + listeSpecialite + ")." + categoriePatient;
     }
 }
 
