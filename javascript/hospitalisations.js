@@ -149,7 +149,24 @@ function afficherEtablissements(){
 
 /* ---------- Lister les hospitalisations ---------- */
 function listerHospitalisations(){
-    let prop, hospitalisations, tableauHospitalisations;
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-hospitalisations.xml",
+        dataType : "xml",
+        success : function(validHosp) { // On valide si ça fonctionne 
+            xmlHosp = validHosp;
+            afficherHospitalisations();
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur");
+        }
+    });
+}
+function afficherHospitalisations(){
+    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement');
+    tailleTableau = tabHospitalisations.length;
+    let tableauHospitalisations = enteteTabHospitalisations; // on peut prendre grid ou div
+    let hospitalisations;
     effacer();// vider le tableau
     
     //Entête du tableau
@@ -159,17 +176,18 @@ function listerHospitalisations(){
     // Remplir le tableau des hospitalisations
     tableauHospitalisations = enteteTabHospitalisations;
     for (hospitalisations of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
-        tableauHospitalisations += ouvrirRangee; // ajouter une rangée
-        for (prop in hospitalisations) { // pour chaque prop dans les hospitalisations
-            tableauHospitalisations += ouvrirCellule + hospitalisations[prop] + fermerCellule; // ajouter une cellule au tableau
-        }
-        tableauHospitalisations += fermerRangee; // fermer la rangée
+        let codeEtab = hospitalisations.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+        let dossier = hospitalisations.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        let dateAdmission = hospitalisations.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue;
+        let dateSortie = hospitalisations.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
+        let specialite = hospitalisations.getElementsByTagName('specialite')[0].firstChild.nodeValue;
+        tableauHospitalisations += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
+
     }
     tableauHospitalisations += fermerTableau; // fermer le tableau
     document.getElementById("afficheTableau").innerHTML = tableauHospitalisations; // afficher le tableau dans l'espace prévu
 
     // afficher message
-    tailleTableau = tabHospitalisations.length; // compter le nombre d'objets dans le tableau
     document.getElementById("champStatus").innerHTML = "Il y a eu <span class='vert'>" + tailleTableau + " hospitalisations</span> depuis le début de Gestion Hospitalière Hébert.";
 }
 
