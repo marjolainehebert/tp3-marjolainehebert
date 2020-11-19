@@ -1,19 +1,6 @@
 // Tableau d'objets pour les patients  
 /* ENLEVER
 
-var tabPatients = [
-    {"Dossier":1,"Nom":"Léger","Prénom":"Émile","Naissance":"26 mars 1917","Sexe":"M"},
-    {"Dossier":2,"Nom":"Bernard","Prénom":"Marie","Naissance":"3 février 1946","Sexe":"F"},
-    {"Dossier":3,"Nom":"Chartrand","Prénom":"Guy","Naissance":"5 avril 1959","Sexe":"M"},
-    {"Dossier":4,"Nom":"Côté","Prénom":"André","Naissance":"2 septembre 1978","Sexe":"M"},
-    {"Dossier":5,"Nom":"Lavoie","Prénom":"Carole","Naissance":"4 novembre 1973","Sexe":"F"},
-    {"Dossier":6,"Nom":"Martin","Prénom":"Diane","Naissance":"2 décembre 1965","Sexe":"F"},
-    {"Dossier":7,"Nom":"Lacroix","Prénom":"Pauline","Naissance":"25 janvier 1956","Sexe":"F"},
-    {"Dossier":8,"Nom":"St-Jean","Prénom":"Arthur","Naissance":"7 octobre 1912","Sexe":"M"},
-    {"Dossier":9,"Nom":"Béchard","Prénom":"Marc","Naissance":"8 août 1980","Sexe":"M"},
-    {"Dossier":10,"Nom":"Chartrand","Prénom":"Mario","Naissance":"23 juillet 1947","Sexe":"M"}
-]
-
 // Tableau d'objets pour les établissements
 var tabEtablissements = [
     {"codeEtab":1230,"nomEtab":"Centre hospitalier Sud","adresseEtab":"1234, Boul. Sud, Montréal, Qc","postalEtab":"H2M 2Y6","telEtab":"(514) 123-1234"},
@@ -84,6 +71,7 @@ function afficherPatients(){
     let tabPatients = xmlPatients.getElementsByTagName('patient');
     tailleTableau = tabPatients.length;
     let tableauPatient = enteteTabPatient; // on peut prendre grid ou div
+    let patient;
     effacer();// vider le tableau
     
     //Entête du tableau
@@ -91,13 +79,12 @@ function afficherPatients(){
     afficherEntete(divEntete); // affiher la nouvelle entête
 
     //remplir le tableau
-    for (var i=0; i<tailleTableau;i++){
-        var lePatient = tabPatients[i];
-        var dossier = lePatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        var nom = lePatient.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        var prenom = lePatient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        var naissance = lePatient.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-        var sexe = lePatient.getElementsByTagName('sexe')[0].firstChild.nodeValue;
+    for (patient of tabPatients){
+        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;
+        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+        let naissance = patient.getElementsByTagName('naissance')[0].firstChild.nodeValue;
+        let sexe = patient.getElementsByTagName('sexe')[0].firstChild.nodeValue;
         tableauPatient += ouvrirRangee + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + nom + fermerCellule + ouvrirCellule + prenom + fermerCellule + ouvrirCellule + naissance + fermerCellule + ouvrirCellule + sexe + fermerCellule + fermerRangee;
     }
 
@@ -113,7 +100,25 @@ function afficherPatients(){
 
 /* ---------- Lister les établissements ---------- */
 function listerEtablissements(){
-    let prop, etab, tableauEtablissement;
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-etablissements.xml",
+        dataType : "xml",
+        success : function(validEtab) { // On valide si ça fonctionne 
+            xmlEtab = validEtab;
+            afficherEtablissements();
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur");
+        }
+    });
+}
+
+function afficherEtablissements(){
+    let tabEtablissements = xmlEtab.getElementsByTagName('etablissement');
+    tailleTableau = tabEtablissements.length;
+    let tableauEtablissement = enteteTabEtablissement; // on peut prendre grid ou div
+    let etab;
     effacer();// vider le tableau
     
     //Entête du tableau
@@ -123,17 +128,19 @@ function listerEtablissements(){
     //remplir le tableau
     tableauEtablissement = enteteTabEtablissement;
     for (etab of tabEtablissements) { // pour chaque etab dans tabEtablissements
-        tableauEtablissement += ouvrirRangee; // ajouter une rangée
-        for (prop in etab) { // pour chaque prop dans etab
-            tableauEtablissement += ouvrirCellule + etab[prop] + fermerCellule; // ajouter une cellule au tableau
-        };
-        tableauEtablissement += fermerRangee;// fermer la rangée
+        let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+        let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
+        let adresseEtab = etab.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
+        let postalEtab = etab.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
+        let telEtab = etab.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
+        
+        tableauEtablissement += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + nomEtab + fermerCellule + ouvrirCellule + adresseEtab + fermerCellule + ouvrirCellule + postalEtab + fermerCellule + ouvrirCellule + telEtab + fermerCellule + fermerRangee;// fermer la rangée
     };
     tableauEtablissement += fermerTableau;// fermer le tableau
     document.getElementById("afficheTableau").innerHTML = tableauEtablissement; //afficher le tableau
 
     // afficher message
-    tailleTableau = tabEtablissements.length;
+    
     document.getElementById("champStatus").innerHTML =  "Il y a <span class='vert'>" + tailleTableau + " établissements</span> dans le réseau hospitalier.";
 }
 
