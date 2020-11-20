@@ -16,7 +16,10 @@ var xmlPatients = null;
 var xmlEtab = null;
 var xmlHosp = null;
 
+
+/* ----------------------------------------- */
 /* ---------- Lister les patients ---------- */
+/* ----------------------------------------- */
 function listerPatients(){
     $.ajax({
         type : "GET", // pour obtenir
@@ -62,8 +65,9 @@ function afficherPatients(){
 
 
 
-
+/* ----------------------------------------------- */
 /* ---------- Lister les établissements ---------- */
+/* ----------------------------------------------- */
 function listerEtablissements(){
     $.ajax({
         type : "GET", // pour obtenir
@@ -110,8 +114,9 @@ function afficherEtablissements(){
 
 
 
-
+/* ------------------------------------------------- */
 /* ---------- Lister les hospitalisations ---------- */
+/* ------------------------------------------------- */
 function listerHospitalisations(){
     $.ajax({
         type : "GET", // pour obtenir
@@ -126,6 +131,7 @@ function listerHospitalisations(){
         }
     });
 }
+
 function afficherHospitalisations(){
     let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement');
     tailleTableau = tabHospitalisations.length;
@@ -146,7 +152,6 @@ function afficherHospitalisations(){
         let dateSortie = hospitalisations.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
         let specialite = hospitalisations.getElementsByTagName('specialite')[0].firstChild.nodeValue;
         tableauHospitalisations += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
-
     }
     tableauHospitalisations += fermerTableau; // fermer le tableau
     document.getElementById("afficheTableau").innerHTML = tableauHospitalisations; // afficher le tableau dans l'espace prévu
@@ -157,8 +162,9 @@ function afficherHospitalisations(){
 
 
 
-
+/* -------------------------------------------------------------- */
 /* ---------- Lister les hospitalisations par patient  ---------- */
+/* -------------------------------------------------------------- */
 function selHosParPatients(){
     $.ajax({
         type : "GET", // pour obtenir
@@ -184,7 +190,6 @@ function selHosParPatients(){
         }
     });
     remplirSelHosParPatients();
-    
 }
 
 /* remplir le sélecteur patient */
@@ -287,10 +292,29 @@ function afficherInfosDuPatient(patientSelect) {
 
 
 
-
+/* --------------------------------------------------------------------------------------- */
 /* ---------- Lister les hospitalisations par établissements et par spécialités ---------- */
-/* remplir le sélecteur Établissement */
+/* --------------------------------------------------------------------------------------- */
+/* Vérification XML */
 function selHosParEtab(){
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-etablissements.xml",
+        dataType : "text",
+        success : function(validEtab) { // On valide si ça fonctionne 
+            xmlEtab = validEtab;
+            alert("patate")
+            remplirSelHosParEtab();
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur avec le fichier tab-etablissements.xml");
+        }
+    });
+}
+
+/* Remplir le sélecteur des établissements */
+function remplirSelHosParEtab(){
+    let tabEtablissements = xmlEtab.getElementsByTagName('etablissement');
     let etab, selEtab;
     effacer();// vider le tableau
     
@@ -305,7 +329,9 @@ function selHosParEtab(){
     selEtab.options.length = 0; // pour vider la liste
     selEtab.options[selEtab.options.length]=new Option("Choisir un établissement"); // ajouter texte à la première option du sélect
 	for (etab of tabEtablissements) { // pour chaque propriété dans le tableau Etablissement, ajouter dans la liste déroulante le code de l'établissement et le nom de l'établissement
-        selEtab.options[selEtab.options.length]=new Option(etab.codeEtab + " - " + etab.nomEtab);
+        let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+        let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;    
+        selEtab.options[selEtab.options.length]=new Option(codeEtab + " - " + nomEtab);
     }
     
 }
