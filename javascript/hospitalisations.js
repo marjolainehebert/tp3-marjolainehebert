@@ -184,12 +184,13 @@ function selHosParPatients(){
         dataType : "xml",
         success : function(validHosp) { // On valide si ça fonctionne 
             xmlHosp = validHosp;
+            remplirSelHosParPatients();
         },
         fail : function() { //si ça ne fonctionne pas
             alert("Il y a une erreur côté serveur avec le fichier tab-hospitalisations.xml");
         }
     });
-    remplirSelHosParPatients();
+    
 }
 
 /* remplir le sélecteur patient */
@@ -300,14 +301,24 @@ function selHosParEtab(){
     $.ajax({
         type : "GET", // pour obtenir
         url : "xml/tab-etablissements.xml",
-        dataType : "text",
+        dataType : "xml",
         success : function(validEtab) { // On valide si ça fonctionne 
             xmlEtab = validEtab;
-            alert("patate")
-            remplirSelHosParEtab();
         },
         fail : function() { //si ça ne fonctionne pas
             alert("Il y a une erreur côté serveur avec le fichier tab-etablissements.xml");
+        }
+    });
+    $.ajax({
+        type : "GET", // pour obtenir
+        url : "xml/tab-hospitalisations.xml",
+        dataType : "xml",
+        success : function(validHosp) { // On valide si ça fonctionne 
+            xmlHosp = validHosp;
+            remplirSelHosParEtab();
+        },
+        fail : function() { //si ça ne fonctionne pas
+            alert("Il y a une erreur côté serveur avec le fichier tab-hospitalisations.xml");
         }
     });
 }
