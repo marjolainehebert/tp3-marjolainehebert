@@ -349,9 +349,12 @@ function remplirSelHosParEtab(){
 
 /* remplir le sélecteur des spécialités */
 function remplirSpecialites(hospitSelect) {
+    let posEtabChoisi = hospitSelect.selectedIndex-1;
+    let tabEtablissements = xmlEtab.getElementsByTagName('etablissement');
+    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement'); 
+    let etabChoisi = tabEtablissements[posEtabChoisi];
+    let nomEtablissement = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue; 
     let selSpecial, chaineSpec = "", compteurSpecialite = 0;
-    posEtabChoisi = hospitSelect.selectedIndex-1;
-    nomEtablissement = tabEtablissements[posEtabChoisi].nomEtab;
 
     codeEtablissement = tabEtablissements[posEtabChoisi].codeEtab;
     document.getElementById("afficheTableau").innerHTML="";  // vider l'espace
