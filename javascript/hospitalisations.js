@@ -95,7 +95,7 @@ function afficherEtablissements(){
     afficherEntete(divEntete); // affiher la nouvelle entête
 
     //remplir le tableau
-    tableauEtablissement = enteteTabEtablissement;
+    
     for (etab of tabEtablissements) { // pour chaque etab dans tabEtablissements
         let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
         let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
@@ -230,7 +230,7 @@ function afficherInfosDuPatient(patientSelect) {
     let compteurSpecialite = 0 ;
     let listeSpecialite = "";
     let categoriePatient = "";
-    let tableauParPatient, tableauHospParPatient, dossierPatient, hospPatient, prop, agePatient, anneeNaissance;
+    let tableauParPatient, tableauHospParPatient, dossierPatient, hospPatient, agePatient, anneeNaissance;
     
     // afficher les données du patient
     tableauParPatient = enteteTabPatient;
@@ -349,14 +349,13 @@ function remplirSelHosParEtab(){
 
 /* remplir le sélecteur des spécialités */
 function remplirSpecialites(hospitSelect) {
-    let posEtabChoisi = hospitSelect.selectedIndex-1;
+    posEtabChoisi = hospitSelect.selectedIndex-1;
     let tabEtablissements = xmlEtab.getElementsByTagName('etablissement');
     let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement'); 
     let etabChoisi = tabEtablissements[posEtabChoisi];
     let nomEtablissement = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue; 
+    let codeEtablissement = etabChoisi.getElementsByTagName('codeEtab')[0].firstChild.nodeValue; 
     let selSpecial, chaineSpec = "", compteurSpecialite = 0;
-
-    codeEtablissement = tabEtablissements[posEtabChoisi].codeEtab;
     document.getElementById("afficheTableau").innerHTML="";  // vider l'espace
     document.getElementById("champStatus").innerHTML = "Choisir ensuite la <span class='vert'>Spécialité</span> à afficher"; // afficher les instructions
     document.getElementById("selectSpecialite").className="selSpecialVisible"; // rendre le select visible
@@ -366,11 +365,13 @@ function remplirSpecialites(hospitSelect) {
     selSpecial.options.length = 0; // pour vider la liste
     selSpecial.options[selSpecial.options.length]=new Option("Choisir une spécialité"); // ajouter texte à la première option du sélect
     
-    for (prop of tabHospitalisations){ // pour chaque propriété dans la tabHospitalisation
-        if (prop.codeEtab == codeEtablissement){ //si la propriété codeEtab est de la même valeur que celui sélectionné dans le sélecteur d'établissement
-            if (!chaineSpec.includes(prop.spécialité)){ // si la propriété spécialité ne se retrouve pas déjà dans la liste
-                chaineSpec += prop.spécialité; // ajouter la propriété dans une variable pour faire la validation
-                selSpecial.options[selSpecial.options.length]=new Option(prop.spécialité); // ajouter la spécialité dans le sélecteur
+    for (hosp of tabHospitalisations){ // pour chaque propriété dans la tabHospitalisation
+        let codeEtabHosp = hosp.getElementsByTagName('codeEtab')[0].firstChild.nodeValue; 
+        let specialite = hosp.getElementsByTagName('specialite')[0].firstChild.nodeValue; 
+        if (codeEtabHosp == codeEtablissement){ //si la propriété codeEtab est de la même valeur que celui sélectionné dans le sélecteur d'établissement
+            if (!chaineSpec.includes(specialite)){ // si la propriété spécialité ne se retrouve pas déjà dans la liste
+                chaineSpec += specialite; // ajouter la propriété dans une variable pour faire la validation
+                selSpecial.options[selSpecial.options.length]=new Option(specialite); // ajouter la spécialité dans le sélecteur
                 compteurSpecialite++; // incrémenter le compteur de spécialité
             }
         } 
@@ -385,38 +386,45 @@ function remplirSpecialites(hospitSelect) {
 
 function afficherTableauParSpecialites(specialitesSelect) {
     let specialiteChoisi = specialitesSelect.options[specialitesSelect.selectedIndex].text; // mettre le texte du sélecteur dans une variable
+    let tabEtablissements = xmlEtab.getElementsByTagName('etablissement');
+    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement'); 
     let etabChoisi = tabEtablissements[posEtabChoisi];
     let compteurSpecialite = 0;
     
-    // manipulation des données du tabEtablissement
+    // afficher le tableau tabEtablissement
     tableauEtablissement = enteteTabEtablissement;
-    tableauEtablissement += ouvrirRangee; // ajouter une rangée
-    for (prop in etabChoisi) { // pour chaque prop dans patient
-        tableauEtablissement += ouvrirCellule + etabChoisi[prop] + fermerCellule; //ajouter une cellule au tableau
-    }
-    tableauEtablissement += fermerRangee + fermerTableau; // fermer la rangée et le tableau
+    let codeEtab = etabChoisi.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+    let nomEtab = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
+    let adresseEtab = etabChoisi.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
+    let postalEtab = etabChoisi.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
+    let telEtab = etabChoisi.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
+        
+    tableauEtablissement += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + nomEtab + fermerCellule + ouvrirCellule + adresseEtab + fermerCellule + ouvrirCellule + postalEtab + fermerCellule + ouvrirCellule + telEtab + fermerCellule + fermerRangee;// fermer la rangée
+    tableauEtablissement += fermerTableau;// fermer le tableau
 
     // afficher les données d'hospitalisation en rapport à l'établissement et à la spécialité
     tableauParSpecialite = enteteTabHospitalisations;
     tableauParSpecialite += ouvrirRangee; // ajouter une rangée
     for (prop of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
-        if (prop.codeEtab == codeEtablissement){
-            if (prop.spécialité == specialiteChoisi){
+        let codeEtabHosp = prop.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
+        let dossierHosp = prop.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        let dateAdmission = prop.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue;
+        let dateSortie = prop.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
+        let specialite = prop.getElementsByTagName('specialite')[0].firstChild.nodeValue;
+        if (codeEtabHosp == codeEtab){
+            if (specialite == specialiteChoisi){
                 compteurSpecialite++;
-                for (champs in prop) { // pour chaque prop dans les hospitalisations
-                    tableauParSpecialite += ouvrirCellule + prop[champs] + fermerCellule; // ajouter une cellule au tableau
-                }
+                tableauParSpecialite += ouvrirRangee + ouvrirCellule + codeEtabHosp + fermerCellule + ouvrirCellule + dossierHosp + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
+                alert (tableauParSpecialite)
             }
         }
-        tableauParSpecialite += fermerRangee; // fermer la rangée
     }
     tableauParSpecialite += fermerTableau; // fermer le tableau
 
 
-
     // afficher
     document.getElementById("afficheTableau").innerHTML = tableauEtablissement + tableauParSpecialite; // afficher le tableau dans l'espace prévu
-    document.getElementById("champStatus").innerHTML = "Il y a eu <span class='vert'>" + compteurSpecialite + " hospitalisations</span> à l'établissement <span class='vert'> " + codeEtablissement + " (" + nomEtablissement + ")</span> pour la spécialité <span class='vert'>" + specialiteChoisi + "</span>.";
+    document.getElementById("champStatus").innerHTML = "Il y a eu <span class='vert'>" + compteurSpecialite + " hospitalisations</span> à l'établissement <span class='vert'> " + codeEtab + " (" + nomEtab + ")</span> pour la spécialité <span class='vert'>" + specialiteChoisi + "</span>.";
 
 }
 
