@@ -415,7 +415,6 @@ function afficherTableauParSpecialites(specialitesSelect) {
             if (specialite == specialiteChoisi){
                 compteurSpecialite++;
                 tableauParSpecialite += ouvrirRangee + ouvrirCellule + codeEtabHosp + fermerCellule + ouvrirCellule + dossierHosp + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
-                alert (tableauParSpecialite)
             }
         }
     }
