@@ -184,7 +184,7 @@ function selHosParPatients(){
         dataType : "xml",
         success : function(validHosp) { // On valide si ça fonctionne 
             xmlHosp = validHosp;
-            remplirSelHosParPatients();
+            remplirSelHosParPatients(); 
         },
         fail : function() { //si ça ne fonctionne pas
             alert("Il y a une erreur côté serveur avec le fichier tab-hospitalisations.xml");
@@ -207,15 +207,29 @@ function remplirSelHosParPatients(){
 
     // remplir le sélecteur de patients
     document.getElementById("selectionPatient").className="visible"; // rendre le conteneur div visible
-    
-    selPatient.options.length = 0; // pour vider la liste
     document.getElementById("champStatus").innerHTML = "Choisir le <span class='vert'>Code Patient</span> pour afficher toutes ses hospitalisations";
-    selPatient.options[selPatient.options.length]=new Option("Choisir un patient");
-	for (patient of tabPatients) {
-        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        selPatient.options[selPatient.options.length]=new Option(dossier + " - " + prenom + " " + nom);
+
+    while (selPatient.hasChildNodes()){ // équivalent à selPatient.options.length = 0; // pour vider la liste DOM
+        selPatient.removeChild(selPatient.firstChild);
+    }
+    var optPatient = document.createElement("option")
+    optPatient.setAttribute("value","");
+    var textOptPatient = document.createTextNode("Choisir un patient"); // équivalent à selPatient.options[selPatient.options.length]=new Option("Choisir un patient");
+    optPatient.appendChild(textOptPatient);
+    selPatient.appendChild(optPatient);
+    for (patient of tabPatients) {
+        let tiret = document.createTextNode(" - ");
+        let espace = document.createTextNode(" ");
+        let dossier = document.createTextNode(patient.getElementsByTagName('dossier')[0].firstChild.nodeValue);
+        let nom = document.createTextNode(patient.getElementsByTagName('nom')[0].firstChild.nodeValue);
+        let prenom = document.createTextNode(patient.getElementsByTagName('prenom')[0].firstChild.nodeValue);
+        optPatient = document.createElement("option");
+        optPatient.appendChild(dossier);
+        optPatient.appendChild(tiret);
+        optPatient.appendChild(prenom);
+        optPatient.appendChild(espace);
+        optPatient.appendChild(nom);
+        selPatient.appendChild(optPatient);
 	}
 }
 
@@ -337,14 +351,24 @@ function remplirSelHosParEtab(){
     // remplir le sélecteur d'établissements
     document.getElementById("selectEtabSpecialite").className="visible"; // rendre le conteneur div visible
     selEtab=document.querySelector('#selectEtablissement'); // aller chercher le sélecteur et le mettre dans une variable
-    selEtab.options.length = 0; // pour vider la liste
-    selEtab.options[selEtab.options.length]=new Option("Choisir un établissement"); // ajouter texte à la première option du sélect
-	for (etab of tabEtablissements) { // pour chaque propriété dans le tableau Etablissement, ajouter dans la liste déroulante le code de l'établissement et le nom de l'établissement
-        let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
-        let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;    
-        selEtab.options[selEtab.options.length]=new Option(codeEtab + " - " + nomEtab);
+    while (selEtab.hasChildNodes()){ // équivalent à selEtab.options.length = 0; // pour vider la liste DOM
+        selEtab.removeChild(selEtab.firstChild);
     }
-    
+    var optEtab = document.createElement("option")
+    optEtab.setAttribute("value","");
+    var textOptEtab = document.createTextNode("Choisir un établissement"); // équivalent à selEtab.options[selEtab.options.length]=new Option("Choisir un patient");
+    optEtab.appendChild(textOptEtab);
+    selEtab.appendChild(optEtab);
+    for (etab of tabEtablissements) { // pour chaque propriété dans le tableau Etablissement, ajouter dans la liste déroulante le code de l'établissement et le nom de l'établissement
+        let codeEtab = document.createTextNode(etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue);
+        let nomEtab = document.createTextNode(etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue);    
+        let tiret = document.createTextNode(" - ");
+        optEtab = document.createElement("option");
+        optEtab.appendChild(codeEtab);
+        optEtab.appendChild(tiret);
+        optEtab.appendChild(nomEtab);
+        selEtab.appendChild(optEtab);
+    }
 }
 
 /* remplir le sélecteur des spécialités */
@@ -362,20 +386,30 @@ function remplirSpecialites(hospitSelect) {
     
     // remplir le sélecteur des spécialités
     selSpecial=document.querySelector('#selectSpecialite');
-    selSpecial.options.length = 0; // pour vider la liste
-    selSpecial.options[selSpecial.options.length]=new Option("Choisir une spécialité"); // ajouter texte à la première option du sélect
-    
+
+    while (selSpecial.hasChildNodes()){ // équivalent à selSpecial.options.length = 0; // pour vider la liste DOM
+        selSpecial.removeChild(selSpecial.firstChild);
+    }
+    var optSpecial = document.createElement("option")
+    optSpecial.setAttribute("value","");
+    var textOptSpecial = document.createTextNode("Choisir une spécialité tidlidé"); // équivalent à selSpecial.options[selSpecial.options.length]=new Option("Choisir un patient");
+    optSpecial.appendChild(textOptSpecial);
+    selSpecial.appendChild(optSpecial);
     for (hosp of tabHospitalisations){ // pour chaque propriété dans la tabHospitalisation
         let codeEtabHosp = hosp.getElementsByTagName('codeEtab')[0].firstChild.nodeValue; 
         let specialite = hosp.getElementsByTagName('specialite')[0].firstChild.nodeValue; 
+        let specialiteNode = document.createTextNode(specialite); 
         if (codeEtabHosp == codeEtablissement){ //si la propriété codeEtab est de la même valeur que celui sélectionné dans le sélecteur d'établissement
             if (!chaineSpec.includes(specialite)){ // si la propriété spécialité ne se retrouve pas déjà dans la liste
                 chaineSpec += specialite; // ajouter la propriété dans une variable pour faire la validation
-                selSpecial.options[selSpecial.options.length]=new Option(specialite); // ajouter la spécialité dans le sélecteur
+                optSpecial = document.createElement("option");
+                optSpecial.appendChild(specialiteNode);
+                selSpecial.appendChild(optSpecial);
                 compteurSpecialite++; // incrémenter le compteur de spécialité
             }
         } 
     }
+
     // afficher message
     if (compteurSpecialite == 0){ // si il n'y a pas de spécialité pour cet établissement, afficher le message
         document.getElementById("champStatus").innerHTML = "Il n'y a eu <span class='rouge'>aucune hospitalisation</span> dans l'établissement <span class='rouge'>" + codeEtablissement + " (" + nomEtablissement + ")</span>.";
