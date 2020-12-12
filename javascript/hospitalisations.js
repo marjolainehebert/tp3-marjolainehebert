@@ -430,56 +430,43 @@ function afficherInfosDuPatient(patientSelect) {
     th.appendChild(leSexe); 
     thead.appendChild(th); 
 
+    /* Remplir les données du tableau */
     let tbody = document.createElement("TBODY");
     let tr, td, tdTexte;
-
-    /* Remplir les données du tableau */
     tr = document.createElement("TR");
-        td = document.createElement("TD");
-        let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        alert(dossier)
-        tdTexte = document.createTextNode(dossier);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+    td = document.createElement("TD");
+    let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(dossier);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
+    let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(nom);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
+    let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(prenom);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
         
-        td = document.createElement("TD");
-        let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(nom);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
-        
-        td = document.createElement("TD");
-        let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(prenom);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
-        
-        td = document.createElement("TD");
-        let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(naissance);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
-        
-        td = document.createElement("TD");
-        let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(sexe);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+    td = document.createElement("TD");
+    let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(naissance);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
+    let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(sexe);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
 
-        tbody.appendChild(tr);
+    tbody.appendChild(tr);
     tableauParPatient.appendChild(thead);
     tableauParPatient.appendChild(tbody)
-
-    //document.getElementById("afficheTableau").appendChild(tableauPatient);
-    /** */
-    // tableauParPatient = enteteTabPatient;
-    // let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-    // let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
-    // let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-    // let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-    // let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-    // tableauParPatient += ouvrirRangee + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + nom + fermerCellule + ouvrirCellule + prenom + fermerCellule + ouvrirCellule + naissance + fermerCellule + ouvrirCellule + sexe + fermerCellule + fermerRangee;
-    // tableauParPatient += fermerTableau; // fermer la rangée et le tableau
     
 
     // afficher les données d'hospitalisation du patient
