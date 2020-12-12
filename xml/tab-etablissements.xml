@@ -10,7 +10,7 @@
     <etablissement>
         <codeEtab>1234</codeEtab>
         <nomEtab>Centre hospitalier de St. Mary</nomEtab>
-        <adresseEtab>3830, avenue Lacombe Montréal, Qc</adresseEtab>
+        <adresseEtab>3830, avenue Lacombe, Montréal, Qc</adresseEtab>
         <postalEtab>H3T 1M5</postalEtab>
         <telEtab>(514) 345-3511</telEtab>
     </etablissement>
@@ -26,7 +26,7 @@
     <etablissement>
         <codeEtab>3980</codeEtab>
         <nomEtab>Hôpital Santa Cabrini</nomEtab>
-        <adresseEtab>5655, rue Saint-Zotique Est Montréal, Qc</adresseEtab>
+        <adresseEtab>5655, rue Saint-Zotique Est, Montréal, Qc</adresseEtab>
         <postalEtab>H1T 1P7</postalEtab>
         <telEtab>(514) 252-6000</telEtab>
     </etablissement>
@@ -34,7 +34,7 @@
     <etablissement>
         <codeEtab>4177</codeEtab>
         <nomEtab>Hôpital Jean-Talon</nomEtab>
-        <adresseEtab>1385, rue Jean-Talon Est Montréal, Qc</adresseEtab>
+        <adresseEtab>1385, rue Jean-Talon Est, Montréal, Qc</adresseEtab>
         <postalEtab>H2E 1S6</postalEtab>
         <telEtab>(514) 495-6767</telEtab>
     </etablissement>
@@ -42,15 +42,15 @@
     <etablissement>
         <codeEtab>7306</codeEtab>
         <nomEtab>Hôpital Fleury</nomEtab>
-        <adresseEtab>2180, rue Fleury Est Montréal, Qc</adresseEtab>
+        <adresseEtab>2180, rue Fleury Est, Montréal, Qc</adresseEtab>
         <postalEtab>H2B 1K3</postalEtab>
-        <telEtab>514) 384-2000</telEtab>
+        <telEtab>(514) 384-2000</telEtab>
     </etablissement>
 
     <etablissement>
         <codeEtab>8895</codeEtab>
         <nomEtab>Hôpital Rivière-des-Prairies</nomEtab>
-        <adresseEtab>7070, boulevard Perras Montréal, Qc</adresseEtab>
+        <adresseEtab>7070, boulevard Perras, Montréal, Qc</adresseEtab>
         <postalEtab>H1E 1A4</postalEtab>
         <telEtab>(514) 323-7260</telEtab>
     </etablissement>
@@ -58,8 +58,8 @@
     <etablissement>
         <codeEtab>3655</codeEtab>
         <nomEtab>Hôpital St-Hubert</nomEtab>
-        <adresseEtab>7070, boulevard Perras Montréal, Qc</adresseEtab>
-        <postalEtab>H1E 1A4</postalEtab>
-        <telEtab>(514) 323-7260</telEtab>
+        <adresseEtab>1234, boulevard des Oiseaux, St-Hubert, Qc</adresseEtab>
+        <postalEtab>H8E 1A8</postalEtab>
+        <telEtab>(819) 233-6072</telEtab>
     </etablissement>
 </listeEtablissements>
