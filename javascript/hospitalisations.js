@@ -402,6 +402,7 @@ function remplirSelHosParPatients(){
 
 /* Afficher les attributs du patient sélectionné dans des tableaux */
 function afficherInfosDuPatient(patientSelect) {
+    document.getElementById("afficheTableau").innerHTML=""; // vider l'espace d'affichage
     posPatientChoisi = patientSelect.selectedIndex-1;
     let tabPatients = xmlPatients.getElementsByTagName('patient');
     let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement');
@@ -414,15 +415,72 @@ function afficherInfosDuPatient(patientSelect) {
     let tableauParPatient, tableauHospParPatient, dossierPatient, hospPatient, agePatient, anneeNaissance;
     
     // afficher les données du patient
+    /** */
+    // remplir le tableau Patient
+    /* Entête du tableau patients */
+    tableauParPatient = document.createElement("TABLE"); 
+    tableauParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
     
-    tableauParPatient = enteteTabPatient;
+    let thead = document.createElement("THEAD");
+    thead.setAttribute("class","table-header-border");
+    let th = document.createElement("TH");
+    let noDossier = document.createTextNode("No. dossier");
+    th.appendChild(noDossier); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leNom = document.createTextNode("Nom");
+    th.appendChild(leNom); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let lePrenom = document.createTextNode("Prénom");
+    th.appendChild(lePrenom); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let laDateDeNaissance = document.createTextNode("Date de naissance");
+    th.appendChild(laDateDeNaissance); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leSexe = document.createTextNode("Sexe");
+    th.appendChild(leSexe); 
+    thead.appendChild(th); 
+
+    /* Remplir les données du tableau */
+    let tbody = document.createElement("TBODY");
+    let tr, td, tdTexte;
+    tr = document.createElement("TR");
+    td = document.createElement("TD");
     let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(dossier);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
     let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(nom);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
     let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(prenom);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+        
+    td = document.createElement("TD");
     let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(naissance);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+    
+    td = document.createElement("TD");
     let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-    tableauParPatient += ouvrirRangee + ouvrirCellule + dossier + fermerCellule + ouvrirCellule + nom + fermerCellule + ouvrirCellule + prenom + fermerCellule + ouvrirCellule + naissance + fermerCellule + ouvrirCellule + sexe + fermerCellule + fermerRangee;
-    tableauParPatient += fermerTableau; // fermer la rangée et le tableau
+    tdTexte = document.createTextNode(sexe);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+
+    tbody.appendChild(tr);
+    tableauParPatient.appendChild(thead);
+    tableauParPatient.appendChild(tbody)
     
 
     // afficher les données d'hospitalisation du patient
@@ -466,10 +524,11 @@ function afficherInfosDuPatient(patientSelect) {
 
     // afficher message et le tableau
     if (compteurHospitalisations == 0){ // si il n'y a eu aucune hospitalisation
-        document.getElementById("afficheTableau").innerHTML = tableauParPatient; // afficher le tableau dans l'espace prévu
+        document.getElementById("afficheTableau").appendChild(tableauParPatient); // afficher le tableau dans l'espace prévu
         document.getElementById("champStatus").innerHTML = "<span class='rouge'>" + nominParGenre + " " + prenom + " " + nom + " n'a pas encore été hospitalisé.</span>" + categoriePatient;
     } else {
-        document.getElementById("afficheTableau").innerHTML = tableauParPatient + tableauHospParPatient; // afficher le tableau dans l'espace prévu
+        document.getElementById("afficheTableau").appendChild(tableauParPatient);
+        document.getElementById("afficheTableau").appendChild(tableauHospParPatient); // afficher le tableau dans l'espace prévu
         document.getElementById("champStatus").innerHTML = nominParGenre + " <span class='vert'>" + prenom + " " + nom + "</span> a été hospitalisé <span class='vert'>" + compteurHospitalisations + " fois</span> (" + listeSpecialite + ")." + categoriePatient;
     }
 }
