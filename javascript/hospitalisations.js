@@ -38,72 +38,72 @@ function afficherPatients(){
     
     // remplir le tableau Patient
     /* Entête du tableau patients */
-    let tableauPatient = document.createElement("TABLE"); 
-    tableauPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    let thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    let th = document.createElement("TH");
-    let noDossier = document.createTextNode("No. dossier");
-    th.appendChild(noDossier); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNom = document.createTextNode("Nom");
-    th.appendChild(leNom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let lePrenom = document.createTextNode("Prénom");
-    th.appendChild(lePrenom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateDeNaissance = document.createTextNode("Date de naissance");
-    th.appendChild(laDateDeNaissance); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leSexe = document.createTextNode("Sexe");
-    th.appendChild(leSexe); 
-    thead.appendChild(th); 
+    let tableauPatient = document.createElement("TABLE");  // création d'un tableau // création d'une table
+    tableauPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau // ajouter un style au tableau
+    let thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    let th = document.createElement("TH"); // créer un th
+    let noDossier = document.createTextNode("No. dossier"); // création de texte
+    th.appendChild(noDossier); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNom = document.createTextNode("Nom"); // création de texte
+    th.appendChild(leNom); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let lePrenom = document.createTextNode("Prénom"); // création de texte
+    th.appendChild(lePrenom); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateDeNaissance = document.createTextNode("Date de naissance"); // création de texte
+    th.appendChild(laDateDeNaissance); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leSexe = document.createTextNode("Sexe"); // création de texte
+    th.appendChild(leSexe); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
-    let tbody = document.createElement("TBODY");
+    let tbody = document.createElement("TBODY"); // créer tbody
     let tr, td, tdTexte;
 
     /* Remplir les données du tableau */
     for (patient of tabPatients){
-        tr = document.createElement("TR");
-        td = document.createElement("TD");
-        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(dossier);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        tr = document.createElement("TR"); // créer une rangée
+        td = document.createElement("TD"); // créer une cellule
+        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(dossier); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(nom);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(nom); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(prenom);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(prenom); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let naissance = patient.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(naissance);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let naissance = patient.getElementsByTagName('naissance')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(naissance); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let sexe = patient.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(sexe);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let sexe = patient.getElementsByTagName('sexe')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(sexe); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
 
-        tbody.appendChild(tr);
+        tbody.appendChild(tr); // ajouter le tr au tbody
     }
-    tableauPatient.appendChild(thead);
-    tableauPatient.appendChild(tbody)
-    document.getElementById("afficheTableau").appendChild(tableauPatient);
+    tableauPatient.appendChild(thead); // ajouter le thead au tableau
+    tableauPatient.appendChild(tbody) // ajouter le tbody au tableau
+    document.getElementById("afficheTableau").appendChild(tableauPatient); // ajouter  le tableau dans l'espace prévu
     
     // afficher messages
     document.getElementById("champStatus").innerHTML = "Il y a <span class='vert'>" + tailleTableau + " patients</span> enregistrés dans la base de donnée.";
@@ -142,71 +142,71 @@ function afficherEtablissements(){
 
     //remplir le tableau des établissements
     /* Entête du tableau établissements */
-    let tableauEtablissement = document.createElement("TABLE"); 
-    tableauEtablissement.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    let thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    let th = document.createElement("TH");
-    let leNoEtab = document.createTextNode("No. établissement");
-    th.appendChild(leNoEtab); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNom = document.createTextNode("Nom");
-    th.appendChild(leNom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let lAdresse = document.createTextNode("Adresse");
-    th.appendChild(lAdresse); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leCodePostal = document.createTextNode("Code Postal");
-    th.appendChild(leCodePostal); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leTelephone = document.createTextNode("Téléphone");
-    th.appendChild(leTelephone); 
-    thead.appendChild(th); 
+    let tableauEtablissement = document.createElement("TABLE");  // création d'un tableau
+    tableauEtablissement.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    let thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    let th = document.createElement("TH"); // créer un th
+    let leNoEtab = document.createTextNode("No. établissement"); // créer un noeud texte
+    th.appendChild(leNoEtab);  // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNom = document.createTextNode("Nom"); // créer un noeud texte
+    th.appendChild(leNom); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let lAdresse = document.createTextNode("Adresse"); // créer un noeud texte
+    th.appendChild(lAdresse); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leCodePostal = document.createTextNode("Code Postal"); // créer un noeud texte
+    th.appendChild(leCodePostal); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leTelephone = document.createTextNode("Téléphone"); // créer un noeud texte
+    th.appendChild(leTelephone); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
 
     /* Remplir les données du tableau Etablissements */
-    let tbody = document.createElement("TBODY");
+    let tbody = document.createElement("TBODY"); // créer tbody
     let tr, td, tdTexte;
     for (etab of tabEtablissements) { // pour chaque etab dans tabEtablissements
-        tr = document.createElement("TR");
-        td = document.createElement("TD");
-        let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(codeEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        tr = document.createElement("TR"); // créer une rangée
+        td = document.createElement("TD"); // créer une cellule
+        let codeEtab = etab.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(codeEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(nomEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(nomEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let adresseEtab = etab.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(adresseEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let adresseEtab = etab.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(adresseEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let postalEtab = etab.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(postalEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let postalEtab = etab.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(postalEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let telEtab = etab.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(telEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let telEtab = etab.getElementsByTagName('telEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(telEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
 
-        tbody.appendChild(tr);
+        tbody.appendChild(tr); // ajouter le tr au tbody
     };
-    tableauEtablissement.appendChild(thead);
-    tableauEtablissement.appendChild(tbody)
+    tableauEtablissement.appendChild(thead); // ajouter le thead au tableau
+    tableauEtablissement.appendChild(tbody) // ajouter le tbody au tableau
     document.getElementById("afficheTableau").appendChild(tableauEtablissement);
 
     // afficher message
@@ -245,70 +245,70 @@ function afficherHospitalisations(){
 
     // Remplir le tableau des hospitalisations
     /* Entête du tableau hospitalisations */
-    let tableauHospitalisations = document.createElement("TABLE"); 
-    tableauHospitalisations.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    let thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    let th = document.createElement("TH");
-    let leCodeEtab = document.createTextNode("Code établissement");
-    th.appendChild(leCodeEtab); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNoDossier = document.createTextNode("No. Dossier Patient");
-    th.appendChild(leNoDossier); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateArrivee = document.createTextNode("Date arrivée");
-    th.appendChild(laDateArrivee); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateSortie = document.createTextNode("Date sortie");
-    th.appendChild(laDateSortie); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laSpecialite = document.createTextNode("Spécialité");
-    th.appendChild(laSpecialite); 
-    thead.appendChild(th); 
+    let tableauHospitalisations = document.createElement("TABLE");  // création d'un tableau
+    tableauHospitalisations.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    let thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    let th = document.createElement("TH"); // créer un th
+    let leCodeEtab = document.createTextNode("Code établissement"); // créer un noeud texte
+    th.appendChild(leCodeEtab); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNoDossier = document.createTextNode("No. Dossier Patient"); // créer un noeud texte
+    th.appendChild(leNoDossier); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateArrivee = document.createTextNode("Date arrivée"); // créer un noeud texte
+    th.appendChild(laDateArrivee); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateSortie = document.createTextNode("Date sortie"); // créer un noeud texte
+    th.appendChild(laDateSortie); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laSpecialite = document.createTextNode("Spécialité"); // créer un noeud texte
+    th.appendChild(laSpecialite); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
     /* Remplir les données du tableau Hospitalisations */
-    let tbody = document.createElement("TBODY");
+    let tbody = document.createElement("TBODY"); // créer tbody
     let tr, td, tdTexte;
     for (hospitalisations of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
-        tr = document.createElement("TR");
-        td = document.createElement("TD");
-        let codeEtab = hospitalisations.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(codeEtab);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        tr = document.createElement("TR"); // créer une rangée
+        td = document.createElement("TD"); // créer une cellule
+        let codeEtab = hospitalisations.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(codeEtab); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let dossier = hospitalisations.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(dossier);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let dossier = hospitalisations.getElementsByTagName('dossier')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(dossier); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let dateAdmission = hospitalisations.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(dateAdmission);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let dateAdmission = hospitalisations.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(dateAdmission); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let dateSortie = hospitalisations.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(dateSortie);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let dateSortie = hospitalisations.getElementsByTagName('dateSortie')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(dateSortie); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
         
-        td = document.createElement("TD");
-        let specialite = hospitalisations.getElementsByTagName('specialite')[0].firstChild.nodeValue;
-        tdTexte = document.createTextNode(specialite);
-        td.appendChild(tdTexte);
-        tr.appendChild(td);
+        td = document.createElement("TD"); // créer une cellule
+        let specialite = hospitalisations.getElementsByTagName('specialite')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+        tdTexte = document.createTextNode(specialite); // créer un noeud texte
+        td.appendChild(tdTexte); //ajouter le texte au td
+        tr.appendChild(td); // ajouter le td au tr
 
-        tbody.appendChild(tr);
+        tbody.appendChild(tr); // ajouter le tr au tbody
     };
-    tableauHospitalisations.appendChild(thead);
-    tableauHospitalisations.appendChild(tbody);
+    tableauHospitalisations.appendChild(thead); // ajouter le thead au tableau
+    tableauHospitalisations.appendChild(tbody) // ajouter le tbody au tableau;
     document.getElementById("afficheTableau").appendChild(tableauHospitalisations); // afficher le tableau dans l'espace prévu
 
     // afficher message
@@ -352,7 +352,7 @@ function selHosParPatients(){
 function remplirSelHosParPatients(){
     let selPatient = document.querySelector('#selectPatient');
     let tabPatients = xmlPatients.getElementsByTagName('patient');
-    tailleTableau = tabPatients.length;
+    tailleTableau = tabPatients.length; // déterminer ta taille du tableau
     let patient;
     effacer();// vider le tableau
     
@@ -366,21 +366,21 @@ function remplirSelHosParPatients(){
     selPatient.options.length = 0; // pour vider la liste
     document.getElementById("champStatus").innerHTML = "Choisir le <span class='vert'>Code Patient</span> pour afficher toutes ses hospitalisations";
     selPatient.options[selPatient.options.length]=new Option("Choisir un patient");
-	for (patient of tabPatients) {
-        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        selPatient.options[selPatient.options.length]=new Option(dossier + " - " + prenom + " " + nom);
+	for (patient of tabPatients) { // pour chaque patients dans le tableau patient
+        let dossier = patient.getElementsByTagName('dossier')[0].firstChild.nodeValue; // aller chercher le no de dossier
+        let nom = patient.getElementsByTagName('nom')[0].firstChild.nodeValue; // aller chercher le nom du patient
+        let prenom = patient.getElementsByTagName('prenom')[0].firstChild.nodeValue; // aller chercher le nom du patient
+        selPatient.options[selPatient.options.length]=new Option(dossier + " - " + prenom + " " + nom); // ajouter les infos dans le sélecteur
 	}
 }
 
 /* Afficher les attributs du patient sélectionné dans des tableaux */
 function afficherInfosDuPatient(patientSelect) {
     document.getElementById("afficheTableau").innerHTML=""; // vider l'espace d'affichage
-    posPatientChoisi = patientSelect.selectedIndex-1;
-    let tabPatients = xmlPatients.getElementsByTagName('patient');
-    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement');
-    let patientChoisi = tabPatients[posPatientChoisi];
+    posPatientChoisi = patientSelect.selectedIndex-1; // isoler l'index 
+    let tabPatients = xmlPatients.getElementsByTagName('patient'); // aller chercher les informations patients
+    let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement'); // aller chercher les informations des établissements
+    let patientChoisi = tabPatients[posPatientChoisi]; //sélectionner le patient choisi à l'aide de l'indice dans le sélecteur
     let nominParGenre = "";
     let compteurHospitalisations = 0 ;
     let compteurSpecialite = 0 ;
@@ -390,100 +390,100 @@ function afficherInfosDuPatient(patientSelect) {
     
     // afficher les données du patient
     /* Entête du tableau patients */
-    tableauParPatient = document.createElement("TABLE"); 
-    tableauParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    let thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    let th = document.createElement("TH");
-    let noDossier = document.createTextNode("No. dossier");
-    th.appendChild(noDossier); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNom = document.createTextNode("Nom");
-    th.appendChild(leNom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let lePrenom = document.createTextNode("Prénom");
-    th.appendChild(lePrenom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateDeNaissance = document.createTextNode("Date de naissance");
-    th.appendChild(laDateDeNaissance); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leSexe = document.createTextNode("Sexe");
-    th.appendChild(leSexe); 
-    thead.appendChild(th); 
+    tableauParPatient = document.createElement("TABLE");  // création d'un tableau
+    tableauParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    let thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    let th = document.createElement("TH"); // créer un th
+    let noDossier = document.createTextNode("No. dossier"); // création de texte
+    th.appendChild(noDossier); // ajouter texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNom = document.createTextNode("Nom"); // création de texte
+    th.appendChild(leNom); // ajouter texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let lePrenom = document.createTextNode("Prénom"); // création de texte
+    th.appendChild(lePrenom); // ajouter texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateDeNaissance = document.createTextNode("Date de naissance"); // création de texte
+    th.appendChild(laDateDeNaissance); // ajouter texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leSexe = document.createTextNode("Sexe"); // création de texte
+    th.appendChild(leSexe); // ajouter texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
     /* Remplir les données du tableau patient */
-    let tbody = document.createElement("TBODY");
+    let tbody = document.createElement("TBODY"); // créer tbody
     let tr, td, tdTexte;
-    tr = document.createElement("TR");
-    td = document.createElement("TD");
-    let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(dossier);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    tr = document.createElement("TR"); // créer une rangée
+    td = document.createElement("TD"); // créer une cellule
+    let dossier = patientChoisi.getElementsByTagName('dossier')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(dossier); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
     
-    td = document.createElement("TD");
-    let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(nom);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let nom = patientChoisi.getElementsByTagName('nom')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(nom); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
     
-    td = document.createElement("TD");
-    let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(prenom);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let prenom = patientChoisi.getElementsByTagName('prenom')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(prenom); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
         
-    td = document.createElement("TD");
-    let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(naissance);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let naissance = patientChoisi.getElementsByTagName('naissance')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(naissance); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
     
-    td = document.createElement("TD");
-    let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(sexe);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let sexe = patientChoisi.getElementsByTagName('sexe')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(sexe); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
 
-    tbody.appendChild(tr);
-    tableauParPatient.appendChild(thead);
-    tableauParPatient.appendChild(tbody)
+    tbody.appendChild(tr); // ajouter le tr au tbody
+    tableauParPatient.appendChild(thead); // ajouter le thead au tableau
+    tableauParPatient.appendChild(tbody) // ajouter le tbody au tableau
     
 
     // afficher les données d'hospitalisation du patient
     dossierPatient = dossier; 
     /* Entête du tableau hospitalisations */
-    tableauHospParPatient = document.createElement("TABLE"); 
-    tableauHospParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    th = document.createElement("TH");
-    let leCodeEtab = document.createTextNode("Code établissement");
-    th.appendChild(leCodeEtab); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNoDossier = document.createTextNode("No. Dossier Patient");
-    th.appendChild(leNoDossier); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateArrivee = document.createTextNode("Date arrivée");
-    th.appendChild(laDateArrivee); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateSortie = document.createTextNode("Date sortie");
-    th.appendChild(laDateSortie); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laSpecialite = document.createTextNode("Spécialité");
-    th.appendChild(laSpecialite); 
-    thead.appendChild(th); 
+    tableauHospParPatient = document.createElement("TABLE");  // création d'un tableau
+    tableauHospParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    th = document.createElement("TH"); // créer un th
+    let leCodeEtab = document.createTextNode("Code établissement"); // création de texte
+    th.appendChild(leCodeEtab); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNoDossier = document.createTextNode("No. Dossier Patient"); // création de texte
+    th.appendChild(leNoDossier); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateArrivee = document.createTextNode("Date arrivée"); // création de texte
+    th.appendChild(laDateArrivee); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateSortie = document.createTextNode("Date sortie"); // création de texte
+    th.appendChild(laDateSortie); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laSpecialite = document.createTextNode("Spécialité"); // création de texte
+    th.appendChild(laSpecialite); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
     /* Remplir les données du tableau Hospitalisations*/
-    tbody = document.createElement("TBODY");
+    tbody = document.createElement("TBODY"); // créer tbody
     for (hospPatient of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
         let codeEtab = hospPatient.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
         let dossierHosp = hospPatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
@@ -493,33 +493,33 @@ function afficherInfosDuPatient(patientSelect) {
         if (dossierHosp == dossierPatient){
             compteurHospitalisations++;
 
-            tr = document.createElement("TR");
-            td = document.createElement("TD");
-            tdTexte = document.createTextNode(codeEtab);
-            td.appendChild(tdTexte);
-            tr.appendChild(td);
+            tr = document.createElement("TR"); // créer une rangée
+            td = document.createElement("TD"); // créer une cellule
+            tdTexte = document.createTextNode(codeEtab); // création de texte
+            td.appendChild(tdTexte); //ajouter le texte au td
+            tr.appendChild(td); // ajouter le td au tr
             
-            td = document.createElement("TD");
-            tdTexte = document.createTextNode(dossierHosp);
-            td.appendChild(tdTexte);
-            tr.appendChild(td);
+            td = document.createElement("TD"); // créer une cellule
+            tdTexte = document.createTextNode(dossierHosp); // création de texte
+            td.appendChild(tdTexte); //ajouter le texte au td
+            tr.appendChild(td); // ajouter le td au tr
             
-            td = document.createElement("TD");
-            tdTexte = document.createTextNode(dateAdmission);
-            td.appendChild(tdTexte);
-            tr.appendChild(td);
+            td = document.createElement("TD"); // créer une cellule
+            tdTexte = document.createTextNode(dateAdmission); // création de texte
+            td.appendChild(tdTexte); //ajouter le texte au td
+            tr.appendChild(td); // ajouter le td au tr
             
-            td = document.createElement("TD");
-            tdTexte = document.createTextNode(dateSortie);
-            td.appendChild(tdTexte);
-            tr.appendChild(td);
+            td = document.createElement("TD"); // créer une cellule
+            tdTexte = document.createTextNode(dateSortie); // création de texte
+            td.appendChild(tdTexte); //ajouter le texte au td
+            tr.appendChild(td); // ajouter le td au tr
             
-            td = document.createElement("TD");
-            tdTexte = document.createTextNode(specialite);
-            td.appendChild(tdTexte);
-            tr.appendChild(td);
+            td = document.createElement("TD"); // créer une cellule
+            tdTexte = document.createTextNode(specialite); // création de texte
+            td.appendChild(tdTexte); //ajouter le texte au td
+            tr.appendChild(td); // ajouter le td au tr
 
-            tbody.appendChild(tr);
+            tbody.appendChild(tr); // ajouter le tr au tbody
 
             if (!listeSpecialite.includes(specialite)){
                 compteurSpecialite++
@@ -531,8 +531,8 @@ function afficherInfosDuPatient(patientSelect) {
         }
     }
     
-    tableauHospParPatient.appendChild(thead);
-    tableauHospParPatient.appendChild(tbody);
+    tableauHospParPatient.appendChild(thead); // ajouter le thead au tableau
+    tableauHospParPatient.appendChild(tbody) // ajouter le tbody au tableau;
     /** */
 
     // déterminer de quel Sexe est le patient pour le nommer correctement
@@ -632,8 +632,8 @@ function remplirSpecialites(hospitSelect) {
     selSpecial.options[selSpecial.options.length]=new Option("Choisir une spécialité"); // ajouter texte à la première option du sélect
     
     for (hosp of tabHospitalisations){ // pour chaque propriété dans la tabHospitalisation
-        let codeEtabHosp = hosp.getElementsByTagName('codeEtab')[0].firstChild.nodeValue; 
-        let specialite = hosp.getElementsByTagName('specialite')[0].firstChild.nodeValue; 
+        let codeEtabHosp = hosp.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
+        let specialite = hosp.getElementsByTagName('specialite')[0].firstChild.nodeValue;  // aller chercher la donnée et lea mettre dans une variable
         if (codeEtabHosp == codeEtablissement){ //si la propriété codeEtab est de la même valeur que celui sélectionné dans le sélecteur d'établissement
             if (!chaineSpec.includes(specialite)){ // si la propriété spécialité ne se retrouve pas déjà dans la liste
                 chaineSpec += specialite; // ajouter la propriété dans une variable pour faire la validation
@@ -659,98 +659,98 @@ function afficherTableauParSpecialites(specialitesSelect) {
     document.getElementById("afficheTableau").innerHTML=""; // vider l'espace d'affichage
     // afficher le tableau tabEtablissement
     /* Entête du tableau établissements */
-    let tableauEtablissement = document.createElement("TABLE"); 
-    tableauEtablissement.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    let thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    let th = document.createElement("TH");
-    let leNoEtab = document.createTextNode("No. établissement");
-    th.appendChild(leNoEtab); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNom = document.createTextNode("Nom");
-    th.appendChild(leNom); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let lAdresse = document.createTextNode("Adresse");
-    th.appendChild(lAdresse); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leCodePostal = document.createTextNode("Code Postal");
-    th.appendChild(leCodePostal); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leTelephone = document.createTextNode("Téléphone");
-    th.appendChild(leTelephone); 
-    thead.appendChild(th); 
+    let tableauEtablissement = document.createElement("TABLE");  // création d'un tableau
+    tableauEtablissement.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    let thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    let th = document.createElement("TH"); // créer un th
+    let leNoEtab = document.createTextNode("No. établissement"); // création de texte
+    th.appendChild(leNoEtab); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNom = document.createTextNode("Nom"); // création de texte
+    th.appendChild(leNom); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let lAdresse = document.createTextNode("Adresse"); // création de texte
+    th.appendChild(lAdresse); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leCodePostal = document.createTextNode("Code Postal"); // création de texte
+    th.appendChild(leCodePostal); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leTelephone = document.createTextNode("Téléphone"); // création de texte
+    th.appendChild(leTelephone); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
     /* Remplir les données du tableau des Établissements*/
-    let tbody = document.createElement("TBODY");
+    let tbody = document.createElement("TBODY"); // créer tbody
     let tr, td, tdTexte;
-    tr = document.createElement("TR");
-    td = document.createElement("TD");
-    let codeEtab = etabChoisi.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(codeEtab);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    tr = document.createElement("TR"); // créer une rangée
+    td = document.createElement("TD"); // créer une cellule
+    let codeEtab = etabChoisi.getElementsByTagName('codeEtab')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(codeEtab); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
         
-    td = document.createElement("TD");
-    let nomEtab = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(nomEtab);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let nomEtab = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(nomEtab); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
         
-    td = document.createElement("TD");
-    let adresseEtab = etabChoisi.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(adresseEtab);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let adresseEtab = etabChoisi.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(adresseEtab); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
         
-    td = document.createElement("TD");
-    let postalEtab = etabChoisi.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(postalEtab); 
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let postalEtab = etabChoisi.getElementsByTagName('postalEtab')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(postalEtab);  // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
         
-    td = document.createElement("TD");
-    let telEtab = etabChoisi.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
-    tdTexte = document.createTextNode(telEtab);
-    td.appendChild(tdTexte);
-    tr.appendChild(td);
+    td = document.createElement("TD"); // créer une cellule
+    let telEtab = etabChoisi.getElementsByTagName('telEtab')[0].firstChild.nodeValue; // aller chercher la donnée et lea mettre dans une variable
+    tdTexte = document.createTextNode(telEtab); // création de texte
+    td.appendChild(tdTexte); //ajouter le texte au td
+    tr.appendChild(td); // ajouter le td au tr
 
-    tbody.appendChild(tr);
-    tableauEtablissement.appendChild(thead);
-    tableauEtablissement.appendChild(tbody);
+    tbody.appendChild(tr); // ajouter le tr au tbody
+    tableauEtablissement.appendChild(thead); // ajouter le thead au tableau
+    tableauEtablissement.appendChild(tbody) // ajouter le tbody au tableau;
 
     // afficher les données d'hospitalisation en rapport à l'établissement et à la spécialité
     /* Entête du tableau hospitalisations */
-    let tableauParSpecialite = document.createElement("TABLE"); 
-    tableauParSpecialite.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
-    thead = document.createElement("THEAD");
-    thead.setAttribute("class","table-header-border");
-    th = document.createElement("TH");
-    let leCodeEtab = document.createTextNode("Code établissement");
-    th.appendChild(leCodeEtab); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let leNoDossier = document.createTextNode("No. Dossier Patient");
-    th.appendChild(leNoDossier); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateArrivee = document.createTextNode("Date arrivée");
-    th.appendChild(laDateArrivee); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laDateSortie = document.createTextNode("Date sortie");
-    th.appendChild(laDateSortie); 
-    thead.appendChild(th); 
-    th = document.createElement("TH");
-    let laSpecialite = document.createTextNode("Spécialité");
-    th.appendChild(laSpecialite); 
-    thead.appendChild(th); 
+    let tableauParSpecialite = document.createElement("TABLE");  // création d'un tableau
+    tableauParSpecialite.setAttribute("class","w3-table-all centrer-tableau mb-md shadow"); // ajouter des styles au tableau
+    thead = document.createElement("THEAD"); // créer le thead // créer le thead
+    thead.setAttribute("class","table-header-border"); // ajouter un style au thead
+    th = document.createElement("TH"); // créer un th
+    let leCodeEtab = document.createTextNode("Code établissement"); // création de texte
+    th.appendChild(leCodeEtab); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let leNoDossier = document.createTextNode("No. Dossier Patient"); // création de texte
+    th.appendChild(leNoDossier); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateArrivee = document.createTextNode("Date arrivée"); // création de texte
+    th.appendChild(laDateArrivee); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laDateSortie = document.createTextNode("Date sortie"); // création de texte
+    th.appendChild(laDateSortie); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
+    th = document.createElement("TH"); // créer un th
+    let laSpecialite = document.createTextNode("Spécialité"); // création de texte
+    th.appendChild(laSpecialite); // ajouter le texte au th
+    thead.appendChild(th);  // ajouter le th au thead
 
     // remplir les données du tableau Hospitalisations par spécialités
-    tbody = document.createElement("TBODY");
+    tbody = document.createElement("TBODY"); // créer tbody
     for (prop of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
         let codeEtabHosp = prop.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
         let dossierHosp = prop.getElementsByTagName('dossier')[0].firstChild.nodeValue;
@@ -761,38 +761,38 @@ function afficherTableauParSpecialites(specialitesSelect) {
         if (codeEtabHosp == codeEtab){
             if (specialite == specialiteChoisi){
                 compteurSpecialite++;
-                tr = document.createElement("TR");
-                td = document.createElement("TD");
-                tdTexte = document.createTextNode(codeEtab);
-                td.appendChild(tdTexte);
-                tr.appendChild(td);
+                tr = document.createElement("TR"); // créer une rangée
+                td = document.createElement("TD"); // créer une cellule
+                tdTexte = document.createTextNode(codeEtab); // création de texte
+                td.appendChild(tdTexte); //ajouter le texte au td
+                tr.appendChild(td); // ajouter le td au tr
                 
-                td = document.createElement("TD");
-                tdTexte = document.createTextNode(dossierHosp);
-                td.appendChild(tdTexte);
-                tr.appendChild(td);
+                td = document.createElement("TD"); // créer une cellule
+                tdTexte = document.createTextNode(dossierHosp); // création de texte
+                td.appendChild(tdTexte); //ajouter le texte au td
+                tr.appendChild(td); // ajouter le td au tr
                 
-                td = document.createElement("TD");
-                tdTexte = document.createTextNode(dateAdmission);
-                td.appendChild(tdTexte);
-                tr.appendChild(td);
+                td = document.createElement("TD"); // créer une cellule
+                tdTexte = document.createTextNode(dateAdmission); // création de texte
+                td.appendChild(tdTexte); //ajouter le texte au td
+                tr.appendChild(td); // ajouter le td au tr
                 
-                td = document.createElement("TD");
-                tdTexte = document.createTextNode(dateSortie);
-                td.appendChild(tdTexte);
-                tr.appendChild(td);
+                td = document.createElement("TD"); // créer une cellule
+                tdTexte = document.createTextNode(dateSortie); // création de texte
+                td.appendChild(tdTexte); //ajouter le texte au td
+                tr.appendChild(td); // ajouter le td au tr
                 
-                td = document.createElement("TD");
-                tdTexte = document.createTextNode(specialite);
-                td.appendChild(tdTexte);
-                tr.appendChild(td);
+                td = document.createElement("TD"); // créer une cellule
+                tdTexte = document.createTextNode(specialite); // création de texte
+                td.appendChild(tdTexte); //ajouter le texte au td
+                tr.appendChild(td); // ajouter le td au tr
 
-                tbody.appendChild(tr);
+                tbody.appendChild(tr); // ajouter le tr au tbody
             }
         }
     }
-    tableauParSpecialite.appendChild(thead);
-    tableauParSpecialite.appendChild(tbody)
+    tableauParSpecialite.appendChild(thead); // ajouter le thead au tableau
+    tableauParSpecialite.appendChild(tbody) // ajouter le tbody au tableau
     // afficher
     document.getElementById("afficheTableau").appendChild(tableauEtablissement);
     document.getElementById("afficheTableau").appendChild(tableauParSpecialite); // afficher le tableau dans l'espace prévu
