@@ -1,14 +1,5 @@
 /* variables globales */
 var divEntete, tailleTableau, codeEtablissement, nomEtablissement, posEtabChoisi, specParEtab;
-var enteteTabPatient = '<table class="w3-table-all centrer-tableau mb-md shadow"><tr class="table-header-border"><th>No. dossier</th><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>Sexe</th></tr>';
-var enteteTabEtablissement = '<table class="w3-table-all centrer-tableau mb-md shadow"><tr class="table-header-border"><th> No. &eacute;tablissement</th><th>Nom</th><th>Adresse</th><th>Code Postal</th><th>Téléphone</th></tr>';
-var enteteTabHospitalisations = '<table class="w3-table-all centrer-tableau mb-md shadow"><tr class="table-header-border"><th> Code &eacute;tablissement</th><th>No. Dossier Patient</th><th>Date arrivée</th><th>Date sortie</th><th>Spécialités</th></tr>';
-
-var ouvrirRangee = "<tr>"
-var fermerRangee = "</tr>"
-var ouvrirCellule = "<td>"
-var fermerCellule = "</td>"
-var fermerTableau = "</table>"
 
 var d = new Date();
 var n = d.getFullYear();
@@ -38,7 +29,6 @@ function listerPatients(){
 function afficherPatients(){
     let tabPatients = xmlPatients.getElementsByTagName('patient');
     tailleTableau = tabPatients.length;
-    //let tableauPatient = enteteTabPatient; 
     let patient;
     effacer();// vider le tableau
     
@@ -178,7 +168,7 @@ function afficherEtablissements(){
     thead.appendChild(th); 
 
 
-    /* Remplir les données du tableau */
+    /* Remplir les données du tableau Etablissements */
     let tbody = document.createElement("TBODY");
     let tr, td, tdTexte;
     for (etab of tabEtablissements) { // pour chaque etab dans tabEtablissements
@@ -280,11 +270,9 @@ function afficherHospitalisations(){
     th.appendChild(laSpecialite); 
     thead.appendChild(th); 
 
+    /* Remplir les données du tableau Hospitalisations */
     let tbody = document.createElement("TBODY");
     let tr, td, tdTexte;
-
-
-    /* Remplir les données du tableau */
     for (hospitalisations of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
         tr = document.createElement("TR");
         td = document.createElement("TD");
@@ -468,7 +456,6 @@ function afficherInfosDuPatient(patientSelect) {
 
     // afficher les données d'hospitalisation du patient
     dossierPatient = dossier; 
-    /** */
     /* Entête du tableau hospitalisations */
     tableauHospParPatient = document.createElement("TABLE"); 
     tableauHospParPatient.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
@@ -495,10 +482,8 @@ function afficherInfosDuPatient(patientSelect) {
     th.appendChild(laSpecialite); 
     thead.appendChild(th); 
 
+    /* Remplir les données du tableau Hospitalisations*/
     tbody = document.createElement("TBODY");
-
-
-    /* Remplir les données du tableau */
     for (hospPatient of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
         let codeEtab = hospPatient.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
         let dossierHosp = hospPatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
@@ -626,7 +611,6 @@ function remplirSelHosParEtab(){
         let nomEtab = etab.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;    
         selEtab.options[selEtab.options.length]=new Option(codeEtab + " - " + nomEtab);
     }
-    
 }
 
 /* remplir le sélecteur des spécialités */
@@ -672,39 +656,146 @@ function afficherTableauParSpecialites(specialitesSelect) {
     let tabHospitalisations = xmlHosp.getElementsByTagName('etablissement'); 
     let etabChoisi = tabEtablissements[posEtabChoisi];
     let compteurSpecialite = 0;
-    
+    document.getElementById("afficheTableau").innerHTML=""; // vider l'espace d'affichage
     // afficher le tableau tabEtablissement
-    tableauEtablissement = enteteTabEtablissement;
+    /* Entête du tableau établissements */
+    let tableauEtablissement = document.createElement("TABLE"); 
+    tableauEtablissement.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
+    let thead = document.createElement("THEAD");
+    thead.setAttribute("class","table-header-border");
+    let th = document.createElement("TH");
+    let leNoEtab = document.createTextNode("No. établissement");
+    th.appendChild(leNoEtab); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leNom = document.createTextNode("Nom");
+    th.appendChild(leNom); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let lAdresse = document.createTextNode("Adresse");
+    th.appendChild(lAdresse); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leCodePostal = document.createTextNode("Code Postal");
+    th.appendChild(leCodePostal); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leTelephone = document.createTextNode("Téléphone");
+    th.appendChild(leTelephone); 
+    thead.appendChild(th); 
+
+    /* Remplir les données du tableau des Établissements*/
+    let tbody = document.createElement("TBODY");
+    let tr, td, tdTexte;
+    tr = document.createElement("TR");
+    td = document.createElement("TD");
     let codeEtab = etabChoisi.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
-    let nomEtab = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
-    let adresseEtab = etabChoisi.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
-    let postalEtab = etabChoisi.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
-    let telEtab = etabChoisi.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(codeEtab);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
         
-    tableauEtablissement += ouvrirRangee + ouvrirCellule + codeEtab + fermerCellule + ouvrirCellule + nomEtab + fermerCellule + ouvrirCellule + adresseEtab + fermerCellule + ouvrirCellule + postalEtab + fermerCellule + ouvrirCellule + telEtab + fermerCellule + fermerRangee;// fermer la rangée
-    tableauEtablissement += fermerTableau;// fermer le tableau
+    td = document.createElement("TD");
+    let nomEtab = etabChoisi.getElementsByTagName('nomEtab')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(nomEtab);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+        
+    td = document.createElement("TD");
+    let adresseEtab = etabChoisi.getElementsByTagName('adresseEtab')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(adresseEtab);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+        
+    td = document.createElement("TD");
+    let postalEtab = etabChoisi.getElementsByTagName('postalEtab')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(postalEtab); 
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+        
+    td = document.createElement("TD");
+    let telEtab = etabChoisi.getElementsByTagName('telEtab')[0].firstChild.nodeValue;
+    tdTexte = document.createTextNode(telEtab);
+    td.appendChild(tdTexte);
+    tr.appendChild(td);
+
+    tbody.appendChild(tr);
+    tableauEtablissement.appendChild(thead);
+    tableauEtablissement.appendChild(tbody);
 
     // afficher les données d'hospitalisation en rapport à l'établissement et à la spécialité
-    tableauParSpecialite = enteteTabHospitalisations;
-    tableauParSpecialite += ouvrirRangee; // ajouter une rangée
+    /* Entête du tableau hospitalisations */
+    let tableauParSpecialite = document.createElement("TABLE"); 
+    tableauParSpecialite.setAttribute("class","w3-table-all centrer-tableau mb-md shadow");
+    thead = document.createElement("THEAD");
+    thead.setAttribute("class","table-header-border");
+    th = document.createElement("TH");
+    let leCodeEtab = document.createTextNode("Code établissement");
+    th.appendChild(leCodeEtab); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let leNoDossier = document.createTextNode("No. Dossier Patient");
+    th.appendChild(leNoDossier); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let laDateArrivee = document.createTextNode("Date arrivée");
+    th.appendChild(laDateArrivee); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let laDateSortie = document.createTextNode("Date sortie");
+    th.appendChild(laDateSortie); 
+    thead.appendChild(th); 
+    th = document.createElement("TH");
+    let laSpecialite = document.createTextNode("Spécialité");
+    th.appendChild(laSpecialite); 
+    thead.appendChild(th); 
+
+    // remplir les données du tableau Hospitalisations par spécialités
+    tbody = document.createElement("TBODY");
     for (prop of tabHospitalisations) { // pour chaque hospitalisations dans le tableau tabHospitalisations
         let codeEtabHosp = prop.getElementsByTagName('codeEtab')[0].firstChild.nodeValue;
         let dossierHosp = prop.getElementsByTagName('dossier')[0].firstChild.nodeValue;
         let dateAdmission = prop.getElementsByTagName('dateAdmission')[0].firstChild.nodeValue;
         let dateSortie = prop.getElementsByTagName('dateSortie')[0].firstChild.nodeValue;
         let specialite = prop.getElementsByTagName('specialite')[0].firstChild.nodeValue;
+
         if (codeEtabHosp == codeEtab){
             if (specialite == specialiteChoisi){
                 compteurSpecialite++;
-                tableauParSpecialite += ouvrirRangee + ouvrirCellule + codeEtabHosp + fermerCellule + ouvrirCellule + dossierHosp + fermerCellule + ouvrirCellule + dateAdmission + fermerCellule + ouvrirCellule + dateSortie + fermerCellule + ouvrirCellule + specialite + fermerCellule + fermerRangee;// fermer la rangée
+                tr = document.createElement("TR");
+                td = document.createElement("TD");
+                tdTexte = document.createTextNode(codeEtab);
+                td.appendChild(tdTexte);
+                tr.appendChild(td);
+                
+                td = document.createElement("TD");
+                tdTexte = document.createTextNode(dossierHosp);
+                td.appendChild(tdTexte);
+                tr.appendChild(td);
+                
+                td = document.createElement("TD");
+                tdTexte = document.createTextNode(dateAdmission);
+                td.appendChild(tdTexte);
+                tr.appendChild(td);
+                
+                td = document.createElement("TD");
+                tdTexte = document.createTextNode(dateSortie);
+                td.appendChild(tdTexte);
+                tr.appendChild(td);
+                
+                td = document.createElement("TD");
+                tdTexte = document.createTextNode(specialite);
+                td.appendChild(tdTexte);
+                tr.appendChild(td);
+
+                tbody.appendChild(tr);
             }
         }
     }
-    tableauParSpecialite += fermerTableau; // fermer le tableau
-
-
+    tableauParSpecialite.appendChild(thead);
+    tableauParSpecialite.appendChild(tbody)
     // afficher
-    document.getElementById("afficheTableau").innerHTML = tableauEtablissement + tableauParSpecialite; // afficher le tableau dans l'espace prévu
+    document.getElementById("afficheTableau").appendChild(tableauEtablissement);
+    document.getElementById("afficheTableau").appendChild(tableauParSpecialite); // afficher le tableau dans l'espace prévu
     document.getElementById("champStatus").innerHTML = "Il y a eu <span class='vert'>" + compteurSpecialite + " hospitalisations</span> à l'établissement <span class='vert'> " + codeEtab + " (" + nomEtab + ")</span> pour la spécialité <span class='vert'>" + specialiteChoisi + "</span>.";
 
 }
