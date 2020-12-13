@@ -800,13 +800,9 @@ function afficherTableauParSpecialites(specialitesSelect) {
 
 }
 
-
-
-
-
-
-
-/* ---------- vider la section tableau ---------- */
+/* --------------------------------------------------------------------------------------- */
+/* ------------------------------ vider la section tableau ------------------------------- */
+/* --------------------------------------------------------------------------------------- */
 function effacer(){
     document.getElementById("afficheTableau").innerHTML=""; // vider l'espace d'affichage
     document.getElementById("entete").className="invisible"; // rendre l'entête invisible
@@ -815,9 +811,9 @@ function effacer(){
 }
 
 
-
-
-/* ---------- afficher dans la section tableau ---------- */
+/* --------------------------------------------------------------------------------------- */
+/* -------------------------- afficher dans la section tableau --------------------------- */
+/* --------------------------------------------------------------------------------------- */
 function afficherEntete(contenu){
     document.getElementById("enteteTitre").innerHTML = contenu;
     document.getElementById("entete").className="visible";
